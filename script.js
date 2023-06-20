@@ -12,13 +12,12 @@ const clearAll = function () {
 };
 
 const equalAction = function () {
-  console.log(displayValue);
   secondNumber = displayValue;
   screen.innerHTML = operate(firstNumber, secondNumber, operator);
+  console.log(firstNumber, secondNumber, operator);
   firstNumber = screen.innerHTML;
   secondNumber = "";
   operator = "";
-  console.log(typeof firstNumber, typeof secondNumber, typeof operator);
 };
 
 equal.addEventListener("click", equalAction);
@@ -32,10 +31,11 @@ function renderOnScreen(e) {
 
 const opSelected = function (e) {
   operator = e.target.textContent;
+  screen.innerHTML = operator;
   if (!firstNumber) {
     firstNumber = displayValue;
   }
-  clearAll();
+  displayValue = "";
 };
 
 Array.from(opBtn).map((btn) => {
