@@ -3,12 +3,27 @@ let displayValue = "";
 
 const screen = document.querySelector(".screen");
 const opBtn = document.querySelectorAll(".op");
+const equal = document.querySelector(".equal");
+const clear = document.querySelector(".clear");
 
-// Math buttons
-// const addBtn = document.getElementById("add");
-// addBtn.addEventListener("click", add);
+const clearAll = function () {
+  screen.innerHTML = "";
+  displayValue = "";
+};
 
-let brains = [];
+const equalAction = function () {
+  console.log(displayValue);
+  secondNumber = displayValue;
+  screen.innerHTML = operate(firstNumber, secondNumber, operator);
+  firstNumber = screen.innerHTML;
+  secondNumber = "";
+  operator = "";
+  console.log(typeof firstNumber, typeof secondNumber, typeof operator);
+};
+
+equal.addEventListener("click", equalAction);
+
+clear.addEventListener("click", clearAll);
 
 function renderOnScreen(e) {
   displayValue += e.target.textContent;
@@ -16,27 +31,25 @@ function renderOnScreen(e) {
 }
 
 const opSelected = function (e) {
-  if (!firstNumber) {
-    secondNumber == e.target.textContent;
-    console.log(secondNumber);
-  }
   operator = e.target.textContent;
-  firstNumber = displayValue;
-  console.log(operator, firstNumber);
+  if (!firstNumber) {
+    firstNumber = displayValue;
+  }
+  clearAll();
 };
 
 Array.from(opBtn).map((btn) => {
   btn.addEventListener("click", opSelected);
 });
 
-const buttons = document.querySelectorAll(".btn");
+const numbers = document.querySelectorAll(".digits");
 
-buttons.forEach((btn) => {
+numbers.forEach((btn) => {
   btn.addEventListener("click", renderOnScreen);
 });
 
 const add = function (a, b) {
-  return a + b;
+  return Number(a) + Number(b);
 };
 
 const subtract = function (a, b) {
@@ -59,6 +72,6 @@ const operate = function (x, y, operator) {
   } else if (operator == "*") {
     return multiply(x, y);
   } else if (operator == "/") {
-    return subtract(x, y);
+    return divide(x, y);
   }
 };
