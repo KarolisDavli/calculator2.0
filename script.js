@@ -16,7 +16,6 @@ const clearAll = function () {
 const equalAction = function () {
   secondNumber = displayValue;
   screen.innerHTML = operate(firstNumber, secondNumber, operator);
-  console.log(firstNumber, secondNumber, operator);
   firstNumber = screen.innerHTML;
   secondNumber = "";
   operator = "";
@@ -29,7 +28,6 @@ clear.addEventListener("click", clearAll);
 function renderOnScreen(e) {
   displayValue += e.target.textContent;
   screen.innerHTML = displayValue;
-  console.log(firstNumber, secondNumber, operator);
 }
 
 const opSelected = function (e) {
@@ -38,7 +36,6 @@ const opSelected = function (e) {
   }
   if (!firstNumber) {
     firstNumber = displayValue;
-    console.log(firstNumber, secondNumber, operator);
   }
   operator = e.target.textContent;
   displayValue = "";
