@@ -9,6 +9,8 @@ const clear = document.querySelector(".clear");
 const clearAll = function () {
   screen.innerHTML = "";
   displayValue = "";
+  firstNumber = "";
+  secondNumber = "";
 };
 
 const equalAction = function () {
@@ -27,14 +29,18 @@ clear.addEventListener("click", clearAll);
 function renderOnScreen(e) {
   displayValue += e.target.textContent;
   screen.innerHTML = displayValue;
+  console.log(firstNumber, secondNumber, operator);
 }
 
 const opSelected = function (e) {
-  operator = e.target.textContent;
-  screen.innerHTML = operator;
+  if (operator) {
+    equalAction();
+  }
   if (!firstNumber) {
     firstNumber = displayValue;
+    console.log(firstNumber, secondNumber, operator);
   }
+  operator = e.target.textContent;
   displayValue = "";
 };
 
